@@ -1,0 +1,857 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.5;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.blinking {
+  animation: blink 2s infinite;
+}
+
+.hexagon {
+  transition: background-color 0.1s ease-in-out;
+}
+
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: block;
+  min-width: 100vh;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.expanded-row {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.ellipsis-tag {
+  max-width: 120px;
+  /* İstediğiniz genişliği ayarlayın */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.low-disk-space {
+  background-color: rgba(255, 0, 0, 0.1);
+  /* Hafif kırmızı renkle işaretleyelim */
+}
+
+.green-disk-space {
+  background-color: #d4edda;
+  /* Light green */
+}
+
+.yellow-disk-space {
+  background-color: #fff3cd;
+  /* Light yellow */
+}
+
+.red-disk-space {
+  background-color: #f8d7da;
+  /* Light red/orange */
+}
+
+
+:where(.css-dev-only-do-not-override-1ck3jst).ant-menu-dark.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-1ck3jst).ant-menu-dark>.ant-menu.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-1ck3jst).ant-menu-dark.ant-menu-horizontal>.ant-menu-submenu-selected,
+:where(.css-dev-only-do-not-override-1ck3jst).ant-menu-dark>.ant-menu.ant-menu-horizontal>.ant-menu-submenu-selected {
+  color: #fff;
+  background-color: #fc621f;
+}
+
+:where(.css-dev-only-do-not-override-1ck3jst).ant-menu-dark.ant-menu-horizontal>.ant-menu-item-selected:hover,
+:where(.css-dev-only-do-not-override-1ck3jst).ant-menu-dark>.ant-menu.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-1ck3jst).ant-menu-dark.ant-menu-horizontal>.ant-menu-submenu-selected,
+:where(.css-dev-only-do-not-override-1ck3jst).ant-menu-dark>.ant-menu.ant-menu-horizontal>.ant-menu-submenu-selected {
+  color: #fff;
+  background-color: #fc621f;
+}
+
+:where(.css-1ck3jst).ant-menu-dark.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-1ck3jst).ant-menu-dark>.ant-menu.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-1ck3jst).ant-menu-dark.ant-menu-horizontal>.ant-menu-submenu-selected,
+:where(.css-1ck3jst).ant-menu-dark>.ant-menu.ant-menu-horizontal>.ant-menu-submenu-selected {
+  color: #fff;
+  background-color: #fa541c;
+}
+
+:where(.css-1ck3jst).ant-menu-dark.ant-menu-horizontal>.ant-menu-item-selected:hover,
+:where(.css-1ck3jst).ant-menu-dark>.ant-menu.ant-menu-horizontal>.ant-menu-item-selected,
+:where(.css-1ck3jst).ant-menu-dark.ant-menu-horizontal>.ant-menu-submenu-selected,
+:where(.css-1ck3jst).ant-menu-dark>.ant-menu.ant-menu-horizontal>.ant-menu-submenu-selected {
+  color: #fff;
+  background-color: #fa541c;
+}
+
+.danger {
+  background-color: red;
+}
+
+.danger:hover {
+  background-color: white !important;
+  color: red !important;
+}
+
+.success {
+  background-color: green;
+  color: white !important;
+}
+
+.green-panel:hover {
+  background-color: green !important;
+  color: green !important;
+}
+
+.green-panel {
+  background-color: rgb(27, 181, 27) !important;
+  color: white !important;
+  -webkit-text-fill-color: #f9f9f9;
+}
+
+.red-panel {
+  background-color: red !important;
+  color: white !important;
+  -webkit-text-fill-color: #f9f9f9;
+
+}
+
+.red-panel:hover {
+  background-color: rgb(133, 13, 13) !important;
+  color: red !important;
+}
+
+.yellow-panel {
+  background-color: rgb(255, 115, 0) !important;
+  color: white !important;
+  -webkit-text-fill-color: #f9f9f9;
+
+}
+
+div.panels-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.textclr {
+  color: #242424;
+  -webkit-text-fill-color: #0c0c0c;
+}
+
+.custom-text-color {
+  color: green;
+  /* Default color */
+  -webkit-text-fill-color: green;
+}
+
+.custom-text-color.red {
+  color: red;
+  /* Red color for certain conditions */
+  -webkit-text-fill-color: red;
+}
+
+@keyframes blinking {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.blinking-panel {
+  animation: blinking 1.5s infinite;
+}
+
+@keyframes blink2 {
+  0% {
+    background-color: initial;
+    /* Start with the initial background color */
+  }
+
+  50% {
+    background-color: rgb(255, 204, 0);
+    /* Blink color (e.g., yellow) */
+  }
+
+  100% {
+    background-color: initial;
+    /* Back to the initial background color */
+  }
+}
+
+.blinking-panel2 {
+  animation: blink2 1s ease-in-out infinite;
+  /* Adjust duration and timing function as needed */
+}
+
+.red {
+  color: red;
+  -webkit-text-fill-color: red;
+}
+
+.ant-badge-status-text {
+  font-size: 12px !important;
+}
+
+.ant-badge-status-text:hover {
+  font-size: 12px !important;
+  color: royalblue;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card-item {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bn5 {
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: white;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.bn5:before {
+  content: "";
+  background: linear-gradient(45deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00c8,
+      #ff0000);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(2px);
+  width: calc(100% + 1px);
+  height: calc(100% + 1px);
+  animation: glowingbn5 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowingbn5 {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.bn5:active {
+  color: #000;
+}
+
+.bn5:active:after {
+  background: transparent;
+}
+
+.bn5:hover:before,
+.bn5.active:before {
+  opacity: 1;
+}
+
+
+.bn5:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.redalert {
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.redalert:before {
+  content: "";
+  background: linear-gradient(45deg, #ff0000, #ff4d4d, #ff7373, #fb5e5e);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowingredalert 20s linear infinite;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowingredalert {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.bn6 {
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: white;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.bn6:before {
+  content: "";
+  background: linear-gradient(45deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00c8,
+      #ff0000);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(2px);
+  width: calc(100% + 1px);
+  height: calc(100% + 1px);
+  animation: glowingbn6 20s linear infinite;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowingbn6 {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.bn6:active {
+  color: #000;
+}
+
+.bn6:active:after {
+  background: transparent;
+}
+
+.bn6:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.redalert:active {
+  color: #000;
+}
+
+.redalert:active:after {
+  background: transparent;
+}
+
+.redalert:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.partially {
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.partially:before {
+  content: "";
+  background: linear-gradient(45deg, #fc621fff, #f57709, #fa7827, #ef7811, #ef7d19);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowingpartially 20s linear infinite;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowingpartially {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.partially:active {
+  color: #000;
+}
+
+.partially:active:after {
+  background: transparent;
+}
+
+.partially:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.diskwarn {
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.diskwarn:before {
+  content: "";
+  background: linear-gradient(45deg, #ff9500, #ffa04d, #f5b83f, #f7b95b, #f2ac43);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowingdiskwarn 20s linear infinite;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowingdiskwarn {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.diskwarn:active {
+  color: #000;
+}
+
+.diskwarn:active:after {
+  background: transparent;
+}
+
+.diskwarn:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.red-icon {
+  color: red;
+}
+
+.table-corner-tag {
+  position: relative;
+}
+
+.table-corner-tag::before {
+  content: 'REPLICA SET NAME';
+  /* Bu kısmı dinamik olarak JSX içinde değiştirebilirsiniz. */
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #007bff;
+  /* Mavi renk */
+  color: white;
+  padding: 5px;
+  font-size: 14px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transform-origin: 0 0;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.table-corner-tag[data-content]::before {
+  content: attr(data-content);
+  /* Diğer stiller... */
+}
+
+html {
+  color: #fff;
+  line-height: 1.3em;
+  font-family: sans-serif;
+  font-size: 25px;
+}
+
+.pre {
+  outline: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+  color: black;
+}
+
+.string {
+  color: green;
+}
+
+.number {
+  color: darkorange;
+}
+
+.boolean {
+  color: blue;
+}
+
+.null {
+  color: magenta;
+}
+
+.key {
+  color: red;
+}
+
+.custom-menu .ant-menu-item-selected {
+  background-color: #cfc6c3 !important;
+  /* İstediğiniz renk */
+  color: rgb(0, 0, 0);
+  /* İsteğe bağlı olarak metin rengi */
+}
+
+.custom-menu .ant-menu-submenu-title {
+  color: #000;
+  /* Alt menü başlık rengi */
+}
+
+.custom-menu .ant-menu-submenu-selected>.ant-menu-submenu-title {
+  color: black;
+  /* Seçili alt menü başlığının rengi */
+}
+
+.low-cache-hit-ratio {
+  background-color: rgb(255, 204, 1);
+  /* Ya da istediğiniz bir renk */
+}
+
+/* Critical durumunda olan hexagonlar için animasyon */
+.hexagon.blinking {
+  animation: blinking 1.5s infinite;
+}
+
+/* Critical durumunda olan kartlar için animasyon */
+.blinking-card {
+  animation: blinking 1.5s infinite;
+}
+
+/* Daha hafif yanıp sönen efekt */
+@keyframes warningPulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.85; }
+  100% { opacity: 1; }
+}
+
+/* Uyarı durumundaki kartlar için animasyon */
+.warning-card {
+  animation: warningPulse 2s infinite;
+  border-left-color: #FFC107 !important;
+}
+
+/* Cluster'lar için styling */
+.cluster-with-issues {
+  order: 0 !important; /* Sorunlu cluster'lar en üste */
+}
+
+/* NodeStatusGrid içindeki cluster container */
+div.ant-card + div.ant-card {
+  margin-top: 16px;
+}
+
+/* Mobil görünümde buton metinleri için stil */
+@media (max-width: 768px) {
+  .button-text {
+    display: none !important;
+  }
+}
+
+/* Küçük ekranlarda button grubunu düzenle */
+@media (max-width: 576px) {
+  .cluster-action-buttons {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Custom Tooltips for GeneralDashboard */
+.custom-tooltip-wrapper {
+  position: relative;
+}
+
+.custom-tooltip-wrapper:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-width: 300px;
+}
+
+/* Improved NodeStatusGrid Styles */
+.node-card {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.node-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Better blinking animation for critical cards */
+@keyframes criticalPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(255, 77, 79, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 77, 79, 0); }
+}
+
+.blinking-card {
+  animation: criticalPulse 2s infinite !important;
+  border-left-color: #ff4d4f !important;
+}
+
+/* Warning animation */
+@keyframes warningPulse {
+  0% { box-shadow: 0 0 0 0 rgba(250, 173, 20, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(250, 173, 20, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(250, 173, 20, 0); }
+}
+
+.warning-card {
+  animation: warningPulse 2s infinite !important;
+  border-left-color: #faad14 !important;
+}
+
+/* Cluster header animations */
+.cluster-header {
+  transition: all 0.3s ease;
+}
+
+.cluster-header:hover {
+  background-color: #f5f5f5;
+}
+
+.cluster-header .ant-btn {
+  transition: all 0.2s ease;
+}
+
+.cluster-header .ant-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Cluster expand/collapse animation */
+.cluster-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.cluster-content.expanded {
+  max-height: 10000px; /* Large enough to fit all content */
+  opacity: 1;
+}
+
+/* Grid layout improvements */
+.node-status-grid .ant-row {
+  margin-left: -12px !important;
+  margin-right: -12px !important;
+}
+
+.node-status-grid .ant-col {
+  padding: 12px !important;
+}
+
+/* Better focus effects for node cards */
+.node-card:focus, .node-card:focus-visible {
+  outline: 2px solid #1890ff;
+  outline-offset: 2px;
+}

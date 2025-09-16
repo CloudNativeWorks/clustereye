@@ -1,0 +1,26 @@
+.site-header.ant-layout-header,
+.ant-layout-header {
+    background: linear-gradient(90deg, rgb(26, 54, 93) 0%, rgb(37, 99, 235) 100%);
+    box-shadow: 0 14px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Ensure the header has the correct height */
+.ant-layout-header {
+    height: 64px;
+    line-height: 64px;
+    padding: 0 24px;
+}
+
+/* Style adjustments for the header content */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Override any Ant Design background colors */
+.ant-layout > .ant-layout-header,
+.ant-layout-header.site-header {
+    background: linear-gradient(90deg, rgb(26, 54, 93) 0%, rgb(37, 99, 235) 100%);
+    box-shadow: 0 14px 20px rgba(0, 0, 0, 0.6);
+} 

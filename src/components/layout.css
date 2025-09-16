@@ -1,0 +1,10 @@
+.ant-layout-header {
+    background: linear-gradient(90deg, rgb(26, 54, 93) 0%, rgb(37, 99, 235) 100%) !important;
+}
+
+/* Override any other Ant Design header styles */
+.ant-layout > .ant-layout-header {
+    background: linear-gradient(90deg, rgb(26, 54, 93) 0%, rgb(37, 99, 235) 100%) !important;
+    line-height: 64px;
+    padding: 0 24px;
+} 

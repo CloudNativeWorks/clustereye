@@ -1,0 +1,203 @@
+/* Custom Tabs CSS for PostgrePA page */
+
+/* Ana tablar için */
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #722ed1 !important;
+  font-weight: 500;
+}
+
+.ant-tabs-ink-bar {
+  background-color: #722ed1 !important;
+}
+
+.ant-tabs-tab:hover {
+  color: #8c44e0 !important;
+}
+
+.ant-tabs-tab {
+  transition: color 0.3s;
+}
+
+/* Tab çizgisi */
+.ant-tabs-nav::before {
+  border-bottom-color: #d9d9d9 !important;
+}
+
+/* Loading spin rengi */
+.ant-spin-dot-item {
+  background-color: #722ed1 !important;
+}
+
+/* Badge renkleri */
+.ant-badge-count {
+  background: #722ed1 !important;
+}
+
+/* Özel butonlar */
+.ant-btn-primary {
+  background-color: #722ed1 !important;
+  border-color: #722ed1 !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: #8c44e0 !important;
+  border-color: #8c44e0 !important;
+}
+
+/* Progress indikatörü */
+.ant-progress-text {
+  color: #722ed1 !important;
+}
+
+/* Aktif item ve seçim renkleri */
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: #f9f0ff;
+  color: #722ed1;
+}
+
+.ant-select-focused .ant-select-selector {
+  border-color: #722ed1 !important;
+  box-shadow: 0 0 0 2px rgba(114, 46, 209, 0.2) !important;
+}
+
+.ant-slider-track {
+  background-color: #722ed1 !important;
+}
+
+.ant-slider-handle {
+  border-color: #722ed1 !important;
+}
+
+/* Select dropdown box-shadow */
+.ant-select-dropdown {
+  box-shadow: 0 2px 8px rgba(114, 46, 209, 0.15) !important;
+}
+
+/* Select arrow */
+.ant-select-arrow {
+  color: #722ed1;
+}
+
+/* Select hover state */
+.ant-select:hover .ant-select-selector {
+  border-color: #722ed1 !important;
+}
+
+/* Input focus state */
+.ant-input-affix-wrapper-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-focused,
+.ant-input:focus {
+  border-color: #722ed1 !important;
+  box-shadow: 0 0 0 2px rgba(114, 46, 209, 0.2) !important;
+}
+
+/* Input hover state */
+.ant-input:hover,
+.ant-input-affix-wrapper:hover {
+  border-color: #722ed1 !important;
+}
+
+/* TimePicker focus and hover states */
+.ant-picker-focused,
+.ant-picker:focus {
+  border-color: #722ed1 !important;
+  box-shadow: 0 0 0 2px rgba(114, 46, 209, 0.2) !important;
+}
+
+.ant-picker:hover {
+  border-color: #722ed1 !important;
+}
+
+/* For autocomplete and similar components */
+.ant-select-auto-complete.ant-select-focused .ant-select-selector {
+  border-color: #722ed1 !important;
+  box-shadow: 0 0 0 2px rgba(114, 46, 209, 0.2) !important;
+}
+
+/* Steps styles */
+.ant-steps .ant-steps-item-finish .ant-steps-item-icon {
+  background-color: white;
+  border-color: #722ed1;
+}
+
+.ant-steps .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+  color: #722ed1;
+}
+
+.ant-steps .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+  background-color: #722ed1;
+}
+
+.ant-steps .ant-steps-item-process .ant-steps-item-icon {
+  background-color: #722ed1;
+  border-color: #722ed1;
+}
+
+.ant-steps .ant-steps-item-wait .ant-steps-item-icon {
+  border-color: #d9d9d9;
+  background-color: white;
+}
+
+.ant-steps .ant-steps-item-wait .ant-steps-item-icon > .ant-steps-icon {
+  color: #d9d9d9;
+}
+
+.ant-steps .ant-steps-item-wait > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+  background-color: #d9d9d9;
+}
+
+.ant-steps .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.ant-steps .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* Force word wrapping in query tables */
+.query-history-table .ant-table-tbody > tr > td,
+.active-queries-table .ant-table-tbody > tr > td,
+.query-history-table .ant-table-thead > tr > th,
+.active-queries-table .ant-table-thead > tr > th {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+    white-space: normal !important;
+    max-width: 0 !important;
+}
+
+/* Prevent horizontal overflow in expandable content */
+.query-history-table .ant-table-expanded-row > td,
+.active-queries-table .ant-table-expanded-row > td {
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.query-history-table .ant-table-expanded-row .ant-table-expanded-row-content,
+.active-queries-table .ant-table-expanded-row .ant-table-expanded-row-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Force table to respect container width */
+.query-history-table .ant-table,
+.active-queries-table .ant-table,
+.query-history-table .ant-table-container,
+.active-queries-table .ant-table-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    table-layout: fixed !important;
+}
+
+/* Prevent query column from expanding too much */
+.query-history-table .ant-table-tbody > tr > td:first-child,
+.active-queries-table .ant-table-tbody > tr > td:first-child {
+    max-width: 300px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+} 

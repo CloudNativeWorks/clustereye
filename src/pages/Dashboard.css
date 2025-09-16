@@ -1,0 +1,44 @@
+.dashboard-card {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.dashboard-card .ant-card-head {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+/* Clusters table styles */
+.clusters-table .ant-table {
+  border-radius: 8px;
+}
+
+.clusters-table .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.clusters-table .ant-table-tbody > tr > td {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.clusters-table .ant-table-tbody > tr:last-child > td {
+  border-bottom: none;
+}
+
+/* Add hover effect to table rows */
+.clusters-table .ant-table-tbody > tr:hover > td {
+  background-color: #fafafa;
+}
+
+/* Make table header sticky */
+.clusters-table .ant-table-thead > tr > th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Add subtle transition effects */
+.clusters-table .ant-table-tbody > tr > td,
+.dashboard-card {
+  transition: all 0.3s ease;
+} 
