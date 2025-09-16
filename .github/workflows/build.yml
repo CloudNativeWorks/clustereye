@@ -1,0 +1,200 @@
+name: Build and Push Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: 'Target platforms (comma separated)'
+        required: false
+        type: string
+        default: 'linux/amd64'
+
+env:
+  CE_DOCKER_USERNAME: ${{ secrets.CE_DOCKER_USERNAME }}
+  CE_DOCKER_PASSWORD: ${{ secrets.CE_DOCKER_PASSWORD }}
+  DOCKER_IMAGE: clustereye
+
+jobs:
+  build-amd64:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: contains(github.event.inputs.platforms, 'linux/amd64')
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.CE_GH_PAT }}
+
+      - name: Set Project Version
+        run: |
+          echo "PROJECT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
+
+      - name: Checkout release tag
+        uses: actions/checkout@v4
+        with:
+          ref: v${{ env.PROJECT_VERSION }}
+          path: release
+          token: ${{ secrets.CE_GH_PAT }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.CE_DOCKER_USERNAME }}
+          password: ${{ env.CE_DOCKER_PASSWORD }}
+
+      - name: Build and push AMD64 images
+        working-directory: release
+        env:
+          DOCKER_BUILDKIT: 1
+        run: |
+          # Set image tags
+          IMAGE_NAME="${CE_DOCKER_USERNAME}/${DOCKER_IMAGE}"
+          VERSION_TAG="${IMAGE_NAME}:v${PROJECT_VERSION}-amd64"
+          LATEST_TAG="${IMAGE_NAME}:latest-amd64"
+          
+          echo "Building AMD64 images with tags:"
+          echo "Version tag: ${VERSION_TAG}"
+          echo "Latest tag: ${LATEST_TAG}"
+          
+          # Build AMD64 platform and load to local registry
+          docker buildx build \
+            --no-cache \
+            --platform linux/amd64 \
+            --build-arg "APP_VERSION=${PROJECT_VERSION}" \
+            -t "${VERSION_TAG}" \
+            -t "${LATEST_TAG}" \
+            --load \
+            .
+          
+          # Push AMD64 images
+          docker push "${VERSION_TAG}"
+          docker push "${LATEST_TAG}"
+          
+          echo "✅ AMD64 Docker image build completed"
+          echo "Image tags:"
+          echo "- ${VERSION_TAG}"
+          echo "- ${LATEST_TAG}"
+
+  build-arm64:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: contains(github.event.inputs.platforms, 'linux/arm64')
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.CE_GH_PAT }}
+
+      - name: Set Project Version
+        run: |
+          echo "PROJECT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
+
+      - name: Checkout release tag
+        uses: actions/checkout@v4
+        with:
+          ref: v${{ env.PROJECT_VERSION }}
+          path: release
+          token: ${{ secrets.CE_GH_PAT }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.CE_DOCKER_USERNAME }}
+          password: ${{ env.CE_DOCKER_PASSWORD }}
+
+      - name: Build and push ARM64 images
+        working-directory: release
+        env:
+          DOCKER_BUILDKIT: 1
+        run: |
+          # Set image tags
+          IMAGE_NAME="${CE_DOCKER_USERNAME}/${DOCKER_IMAGE}"
+          VERSION_TAG="${IMAGE_NAME}:v${PROJECT_VERSION}-arm64"
+          LATEST_TAG="${IMAGE_NAME}:latest-arm64"
+
+          echo "Building ARM64 images with tags:"
+          echo "Version tag: ${VERSION_TAG}"
+          echo "Latest tag: ${LATEST_TAG}"
+
+          # Build ARM64 platform and push
+          docker buildx build \
+            --no-cache \
+            --platform linux/arm64 \
+            --build-arg "APP_VERSION=${PROJECT_VERSION}" \
+            -t "${VERSION_TAG}" \
+            -t "${LATEST_TAG}" \
+            --push \
+            .
+
+          echo "✅ ARM64 Docker image build completed"
+          echo "Image tags:"
+          echo "- ${VERSION_TAG}"
+          echo "- ${LATEST_TAG}"
+
+  create-manifest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [build-amd64, build-arm64]
+    if: contains(github.event.inputs.platforms, ',')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.CE_GH_PAT }}
+
+      - name: Set Project Version
+        run: |
+          echo "PROJECT_VERSION=$(cat VERSION)" >> $GITHUB_ENV
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.CE_DOCKER_USERNAME }}
+          password: ${{ env.CE_DOCKER_PASSWORD }}
+
+      - name: Create multi-platform manifests
+        run: |
+          # Set image names
+          IMAGE_NAME="${CE_DOCKER_USERNAME}/${DOCKER_IMAGE}"
+          VERSION_TAG="${IMAGE_NAME}:v${PROJECT_VERSION}"
+          LATEST_TAG="${IMAGE_NAME}:latest"
+          
+          echo "Creating multi-platform manifests:"
+          echo "Version manifest: ${VERSION_TAG}"
+          echo "Latest manifest: ${LATEST_TAG}"
+          
+          # Create manifest list from platform-specific images
+          docker manifest create "${VERSION_TAG}" \
+            "${IMAGE_NAME}:v${PROJECT_VERSION}-amd64" \
+            "${IMAGE_NAME}:v${PROJECT_VERSION}-arm64"
+          
+          # Push version manifest
+          docker manifest push "${VERSION_TAG}"
+          
+          # Create latest manifest
+          docker manifest create "${LATEST_TAG}" \
+            "${IMAGE_NAME}:latest-amd64" \
+            "${IMAGE_NAME}:latest-arm64"
+          
+          # Push latest manifest
+          docker manifest push "${LATEST_TAG}"
+          
+          echo "✅ Multi-platform manifests created successfully"
+          echo "Manifest tags:"
+          echo "- ${VERSION_TAG}"
+          echo "- ${LATEST_TAG}" 
