@@ -10,7 +10,7 @@ on:
         type: string
 
 env:
-  CE_GH_TOKEN: ${{ secrets.CE_GH_PAT }}
+  GH_TOKEN: ${{ secrets.CE_GH_PAT }}
 
 jobs:
   create-release:
